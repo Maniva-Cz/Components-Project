@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import CardCesta from './cardCesta';
-import { cestaMock } from './cesta.mock';
 
-// Configuração Principal do Componente
+
 const meta = {
   title: 'Maniva/CardCesta', 
   component: CardCesta,
@@ -15,20 +14,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Cesta Padrão 
-export const Padrao: Story = {
+export const ProdutoPadrao: Story = {
   args: {
-    dados: cestaMock,
+    id: 1,
+    nome: 'Macaxeira (1kg)',
+    preco: 5.00,
   },
 };
 
-// Variação da Cesta pro status de "Entregue"
-export const Entregue: Story = {
+// História 2: Um produto mais caro
+export const ProdutoCaro: Story = {
   args: {
-    dados: {
-      ...cestaMock, 
-      status: 'Entregue', 
-      dataEntrega: '01/12/2025'
-    },
+    id: 2,
+    nome: 'Mel Orgânico',
+    preco: 25.50,
   },
 };

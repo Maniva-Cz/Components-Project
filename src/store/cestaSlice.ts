@@ -21,5 +21,8 @@ const cestaSlice = createSlice({
   }
 });
 
+// Exporta as ações para usar nos componentes
 export const { adicionarItem, removerItem } = cestaSlice.actions;
-export default cestaSlice.reducer;  
+
+// Exporta o reducer como default para a store poder importar
+export default cestaSlice.reducer;

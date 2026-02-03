@@ -1,24 +1,20 @@
 import React from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { type RootState } from './store';
-import WidgetFinanceiro from './componentes/WidgetFinanceiro/widgetFinanceiro';
-import TabelaProducao from './componentes/TabelaProducao/tabelaProducao';
-import MuralAvisos from './componentes/MuralAvisos/muralAvisos';
-import CardCesta from './componentes/CardCesta/cardCesta';
 
-
-import { financeiroMock } from './componentes/WidgetFinanceiro/financeiro.mock';
-import { producaoMock } from './componentes/TabelaProducao/producao.mock';
-import { muralMock } from './componentes/MuralAvisos/mural.mock';
+// Importando as páginas criadas
+import { Inicial } from './paginas/inicial';
+import { Producao } from './paginas/producao';
+import { Loja } from './paginas/loja';
 
 const App: React.FC = () => {
-  // Acessa o estado global da cesta (configurado no store)
   const itensCesta = useSelector((state: RootState) => state.cesta);
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       
-      {/* CABEÇALHO */}
+      {/* Cabeçalho com Navegação */}
       <header style={{ 
         display: 'flex', 
         justifyContent: 'space-between', 
@@ -27,8 +23,15 @@ const App: React.FC = () => {
         marginBottom: '20px',
         paddingBottom: '10px'
       }}>
-        <h1 style={{ color: '#2c3e50', margin: 0 }}>Maniva - Gestão</h1>
+        <h1 style={{ color: '#2c3e50', margin: 0 }}>Maniva</h1>
         
+        {/* Menu de Navegação */}
+        <nav style={{ display: 'flex', gap: '15px' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Início</Link>
+          <Link to="/producao" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Produção</Link>
+          <Link to="/loja" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Loja</Link>
+        </nav>
+
         {/* Contador do Redux */}
         <div style={{ 
           backgroundColor: '#e0f7fa', 
@@ -37,55 +40,19 @@ const App: React.FC = () => {
           color: '#006064',
           fontWeight: 'bold'
         }}>
-          🛒 Cesta: {itensCesta.length} itens
+          🛒 Cesta: {itensCesta.length}
         </div>
       </header>
 
+      {/* ÁREA DE CONTEÚDO QUE MUDA CONFORME A ROTA */}
       <main>
-        {/* SEÇÃO 1: RESUMOS (Financeiro e Mural) */}
-        <section style={{ 
-          display: 'flex', 
-          gap: '30px', 
-          flexWrap: 'wrap', 
-          marginBottom: '40px',
-          alignItems: 'flex-start' 
-        }}>
-          
-          <div>
-            <WidgetFinanceiro dados={financeiroMock} />
-          </div>
-
-          <div style={{ flex: 1, minWidth: '300px' }}>
-            <MuralAvisos postagens={muralMock} />
-          </div>
-        
-        </section>
-
-        {/* SEÇÃO 2: PRODUÇÃO */}
-        <section style={{ marginBottom: '40px' }}>
-          <TabelaProducao dadosIniciais={producaoMock} />
-        </section>
-
-        {/* SEÇÃO 3: LOJA (Teste do Redux) */}
-        <section style={{ 
-          backgroundColor: '#f9f9f9', 
-          padding: '20px', 
-          borderRadius: '10px' 
-        }}>
-          <h2 style={{ marginTop: 0 }}>Disponível para Cesta (Redux Test)</h2>
-          <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '15px' }}>
-            Adicione itens aqui e veja o contador no topo mudar.
-          </p>
-          
-          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            {/* IDs manuais para testar a adição/remoção */}
-            <CardCesta id={101} nome="Farinha de Mandioca (1kg)" preco={15.00} />
-            <CardCesta id={102} nome="Feijão Verde (1kg)" preco={12.50} />
-            <CardCesta id={103} nome="Doce de Leite Artesanal" preco={22.00} />
-          </div>
-        </section>
-
+        <Routes>
+          <Route path="/" element={<Inicial />} />
+          <Route path="/producao" element={<Producao />} />
+          <Route path="/loja" element={<Loja />} />
+        </Routes>
       </main>
+      
     </div>
   );
 };

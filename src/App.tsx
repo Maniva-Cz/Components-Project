@@ -7,6 +7,7 @@ import { type RootState } from './store';
 import { Inicial } from './paginas/inicial';
 import { Producao } from './paginas/producao';
 import { Loja } from './paginas/loja';
+import { Membros } from './paginas/membros';
 
 const App: React.FC = () => {
   const itensCesta = useSelector((state: RootState) => state.cesta);
@@ -25,11 +26,12 @@ const App: React.FC = () => {
       }}>
         <h1 style={{ color: '#2c3e50', margin: 0 }}>Maniva</h1>
         
-        {/* Menu de Navegação */}
+        {/* Menu de Navegação */} 
         <nav style={{ display: 'flex', gap: '15px' }}>
           <Link to="/" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Início</Link>
           <Link to="/producao" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Produção</Link>
           <Link to="/loja" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Loja</Link>
+          <Link to="/membros" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Membros</Link>
         </nav>
 
         {/* Contador do Redux */}
@@ -50,6 +52,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Inicial />} />
           <Route path="/producao" element={<Producao />} />
           <Route path="/loja" element={<Loja />} />
+          <Route path="/membros" element={<Membros />} />
         </Routes>
       </main>
       

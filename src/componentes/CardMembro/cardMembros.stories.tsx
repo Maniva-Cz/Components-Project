@@ -12,16 +12,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// CORREÇÃO: Pega o primeiro item da lista e não mais um objeto isolado
 export const Pendente: Story = {
   args: {
-    dados: membroMock, // O mock padrão é pendente
+    dados: membroMock[0], 
   },
 };
 
 export const Ativo: Story = {
   args: {
     dados: {
-      ...membroMock,
+      ...membroMock[0], 
       status: 'Ativo',
       nome: "Carlos (Agricultor)",
       tipo: "Agricultor"

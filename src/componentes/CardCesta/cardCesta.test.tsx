@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '../../utils/test-utils';
 import CardCesta from './cardCesta';
 import '@testing-library/jest-dom';
@@ -38,7 +39,6 @@ describe('Componente CardCesta', () => {
     // Simula o clique
     fireEvent.click(botao);
     
-    // Verifica se mudou o estado (agora ele deve ser "Remover")
     expect(botao).toHaveTextContent('Remover');
   });
 

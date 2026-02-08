@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '../../utils/test-utils';
 import CardMembro from './cardMembro';
 import '@testing-library/jest-dom';

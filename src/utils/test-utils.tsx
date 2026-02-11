@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from '../store';
 
-// Essa função envolve qualquer componente com o Provider do Redux e o Router
+// Função que envolve qualquer componente com o Provider do Redux e o Router
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
@@ -21,8 +21,6 @@ const customRender = (
   options?: Omit<RenderOptions, 'wrapper'>,
 ) => render(ui, { wrapper: AllTheProviders, ...options });
 
-// Re-exportamos tudo do testing-library
 export * from '@testing-library/react';
 
-// Exportamos nosso render customizado
 export { customRender as render };

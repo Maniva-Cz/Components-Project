@@ -1,8 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-interface ItemCesta {
-  id: number;
-  nome: string;
+export interface ItemCesta {
+  id: number;        
+  nome: string;       
   quantidade: number;
 }
 
@@ -12,8 +12,16 @@ const cestaSlice = createSlice({
   name: 'cesta',
   initialState,
   reducers: {
+    setItens: (_state, action: PayloadAction<ItemCesta[]>) => {
+      return action.payload;
+    },
     adicionarItem: (state, action: PayloadAction<ItemCesta>) => {
-      state.push(action.payload);
+      const existente = state.find(i => i.nome === action.payload.nome);
+      if (existente) {
+        existente.quantidade += action.payload.quantidade;
+      } else {
+        state.push(action.payload);
+      }
     },
     removerItem: (state, action: PayloadAction<number>) => {
       return state.filter(item => item.id !== action.payload);
@@ -21,8 +29,5 @@ const cestaSlice = createSlice({
   }
 });
 
-// Exporta as ações para usar nos componentes
-export const { adicionarItem, removerItem } = cestaSlice.actions;
-
-// Exporta o reducer como default para a store poder importar
+export const { setItens, adicionarItem, removerItem } = cestaSlice.actions;
 export default cestaSlice.reducer;

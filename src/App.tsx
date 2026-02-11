@@ -8,6 +8,8 @@ import { Inicial } from './paginas/inicial';
 import { Producao } from './paginas/producao';
 import { Loja } from './paginas/loja';
 import { Membros } from './paginas/membros';
+import { Dashboard } from './paginas/dashboard';
+
 
 const App: React.FC = () => {
   const itensCesta = useSelector((state: RootState) => state.cesta);
@@ -32,6 +34,7 @@ const App: React.FC = () => {
           <Link to="/producao" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Produção</Link>
           <Link to="/loja" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Loja</Link>
           <Link to="/membros" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Membros</Link>
+          <Link to="/dashboard" style={{ textDecoration: 'none', color: '#3498db', fontWeight: 'bold' }}>Dashboard</Link>
         </nav>
 
         {/* Contador do Redux */}
@@ -53,6 +56,7 @@ const App: React.FC = () => {
           <Route path="/producao" element={<Producao />} />
           <Route path="/loja" element={<Loja />} />
           <Route path="/membros" element={<Membros />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </main>
       

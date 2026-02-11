@@ -21,7 +21,6 @@ describe('Componente WidgetFinanceiro', () => {
   
   // Teste 1: Renderização dos títulos e mês
   it('deve exibir os títulos e o mês de referência', () => {
-    // Agora passamos apenas 'dados', pois o objeto interno já está correto
     render(<WidgetFinanceiro dados={mockDadosPositivos} />);
     
     expect(screen.getByText(/Financeiro/i)).toBeInTheDocument();
@@ -32,7 +31,6 @@ describe('Componente WidgetFinanceiro', () => {
   // Teste 2: Formatação de moeda (Arrecadado)
   it('deve formatar o valor arrecadado como moeda (R$)', () => {
     render(<WidgetFinanceiro dados={mockDadosPositivos} />);
-    // O regex busca "2.000,00" com ou sem espaços no R$
     expect(screen.getByText(/R\$\s?2\.000,00/)).toBeInTheDocument();
   });
 

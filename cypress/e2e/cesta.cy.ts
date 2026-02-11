@@ -1,60 +1,36 @@
-describe('Fluxo de Compra da Cesta', () => {
-  // Antes de cada teste, visita a página inicial
+describe("Cestas e Itens (RF02/RF04)", () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173'); 
+    cy.visit("http://localhost:5173/loja");
   });
 
-  it('Deve navegar para a Loja e verificar os produtos', () => {
-    // 1. Verifica se está na Home
-    cy.contains('Maniva').should('be.visible');
+  it("deve criar uma cesta", () => {
+    const nome = `Cesta E2E ${Date.now()}`;
 
-    // 2. Clica no link "Loja" no menu
-    cy.contains('nav a', 'Loja').click();
+    cy.intercept("POST", "**/cestas").as("criarCesta");
 
-    // 3. Verifica se a URL mudou
-    cy.url().should('include', '/loja');
+    cy.get('[data-testid="cesta-nome"]').clear().type(nome);
+    cy.get('[data-testid="cesta-criar"]').click();
 
-    // 4. Verifica se os produtos apareceram
-    cy.contains('Farinha de Mandioca').should('be.visible');
-    cy.contains('Doce de Leite Artesanal').should('be.visible');
+    cy.wait("@criarCesta").its("response.statusCode").should("be.oneOf", [200, 201]);
+    cy.contains(nome).should("be.visible");
   });
 
-  it('Deve adicionar um item ao carrinho e atualizar o contador', () => {
-    // 1. Vai para a loja
-    cy.contains('nav a', 'Loja').click();
+  it("deve adicionar e remover um item na cesta a partir de Produção", () => {
+    cy.intercept("POST", "**/cestaItens").as("addItem");
+    cy.intercept("DELETE", "**/cestaItens/*").as("delItem");
 
-    // 2. Verifica que o carrinho começa vazio (Cesta: 0)
-    // Nota: O texto exato deve bater com o do seu componente App.tsx ("🛒 Cesta: 0")
-    cy.contains('Cesta: 0').should('be.visible');
+    // Adiciona o primeiro produto disponível (vem de /producao)
+    cy.get('[data-testid^="produto-add-"]').first().click();
 
-    // 3. CORREÇÃO DO ERRO:
-    // Encontra botões "Adicionar", pega o PRIMEIRO (.first) e clica
-    cy.contains('button', 'Adicionar').first().click();
+    cy.wait("@addItem").then((i) => {
+      expect(i.response?.statusCode).to.be.oneOf([200, 201]);
+      const id = i.response?.body?.id;
+      expect(id).to.exist;
 
-    // 4. Verifica se o botão mudou para "Remover"
-    cy.contains('button', 'Remover').should('be.visible');
+      // Remove pelo id retornado
+      cy.get(`[data-testid="item-remover-${id}"]`).click();
+    });
 
-    // 5. Verifica se o contador lá em cima mudou para 1
-    cy.contains('Cesta: 1').should('be.visible');
-  });
-
-  it('Deve remover um item do carrinho', () => {
-    // 1. Vai para a loja
-    cy.contains('nav a', 'Loja').click();
-    
-    // 2. Adiciona o primeiro item
-    cy.contains('button', 'Adicionar').first().click();
-    
-    // Confirma que adicionou
-    cy.contains('Cesta: 1').should('be.visible');
-
-    // 3. Clica em Remover (como só tem 1 botão de remover agora, não precisa do .first(), mas mal não faz)
-    cy.contains('button', 'Remover').click();
-
-    // 4. Verifica se voltou para Adicionar
-    cy.contains('button', 'Adicionar').should('exist');
-
-    // 5. Verifica se o contador zerou
-    cy.contains('Cesta: 0').should('be.visible');
+    cy.wait("@delItem").its("response.statusCode").should("be.oneOf", [200, 204]);
   });
 });

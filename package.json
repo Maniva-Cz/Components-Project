@@ -9,10 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "api": "json-server --watch backend/db.json --port 3333"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
+    "axios": "^1.13.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
@@ -44,6 +46,7 @@
     "eslint-plugin-storybook": "^10.1.4",
     "globals": "^16.5.0",
     "jsdom": "^27.4.0",
+    "json-server": "^1.0.0-beta.5",
     "playwright": "^1.57.0",
     "storybook": "^10.1.4",
     "typescript": "~5.9.3",

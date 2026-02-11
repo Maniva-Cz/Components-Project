@@ -17,7 +17,7 @@ const MuralAvisos: React.FC<MuralAvisosProps> = ({ postagens }) => {
   };
 
   return (
-    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '500px' }}>
+    <div data-testid="mural" style={{ fontFamily: 'Arial, sans-serif', maxWidth: '500px' }}>
       <h2 style={{ borderBottom: '2px solid #4CAF50', paddingBottom: '10px' }}>
         Mural da Comunidade
       </h2>
@@ -26,14 +26,18 @@ const MuralAvisos: React.FC<MuralAvisosProps> = ({ postagens }) => {
         <p>Nenhum aviso no momento.</p>
       ) : (
         postagens.map((post) => (
-          <div key={post.id} style={{ 
-            border: '1px solid #ddd', 
-            borderRadius: '8px', 
-            padding: '15px', 
-            marginBottom: '15px',
-            backgroundColor: '#fff',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-          }}>
+          <div
+            key={post.id}
+            data-testid="mural-post"
+            style={{ 
+              border: '1px solid #ddd', 
+              borderRadius: '8px', 
+              padding: '15px', 
+              marginBottom: '15px',
+              backgroundColor: '#fff',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+            }}
+            >
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
               <span style={{ fontWeight: 'bold', color: '#555' }}>{post.autor}</span>
               <span style={{ fontSize: '0.85rem', color: '#999' }}>{post.data}</span>

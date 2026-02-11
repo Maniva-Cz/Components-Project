@@ -1,59 +1,100 @@
-# Maniva-CZ - Plataforma de Gestão para CSA
+# Maniva-CZ – Plataforma de Gestão para CSA
 
-Este projeto é a implementação da **1ª Etapa (Projeto de Componentes)** da disciplina **Programação para Web II**.
+Este projeto é a implementação das **Etapas 1 e 2** da disciplina **Programação para Web II**.
 
-O sistema **Maniva-CZ** visa automatizar a gestão, transparência e fortalecimento da rede de **Comunidades que Sustentam a Agricultura (CSA)**, focando em resolver gargalos operacionais entre agricultores e co-agricultores.
-
-## Tecnologias Utilizadas
-
-* **React** (Vite + TypeScript)
-* **Storybook** (Documentação e visualização de componentes isolados)
-* **Vitest** + **React Testing Library** (Testes Unitários)
+O sistema **Maniva-CZ** visa automatizar a gestão, transparência e fortalecimento da rede de **Comunidades que Sustentam a Agricultura (CSA)**, resolvendo gargalos operacionais entre agricultores e co-agricultores por meio de uma aplicação web modular, testável e escalável.
 
 ---
 
-## Como Instalar e Executar
+## Tecnologias Utilizadas
 
-Certifique-se de ter o **Node.js** instalado em sua máquina.
+### Front-end
+- React (Vite + TypeScript)
+- Redux Toolkit (estado global)
+- React Router DOM (roteamento)
+- Storybook (documentação de componentes)
+- Service Worker (Workbox / VitePWA) – cache de funcionalidades
 
-### 1. Clonar e Instalar Dependências
-Abra o terminal na pasta do projeto e execute:
+### Testes
+- Vitest + React Testing Library (testes unitários)
+- Cypress (testes de sistema / E2E)
 
+### Backend
+- JSON Server (API REST simulada)
+
+---
+
+## Requisitos Funcionais Implementados
+
+- RF01 – Gestão de Membros  
+- RF02 – Gestão de Cestas  
+- RF03 – Controle de Produção  
+- RF04 – Itens da Cesta  
+- RF05 – Mural de Avisos (com cache via Service Worker)  
+- RF06 – Entradas Financeiras  
+- RF07 – Saídas Financeiras  
+- RF08 – Dashboard de Indicadores  
+
+---
+
+## Cache com Service Worker
+
+A funcionalidade **Mural de Avisos (RF05)** utiliza cache via **Service Worker**, garantindo que:
+- Após a primeira requisição, os avisos ficam disponíveis mesmo em caso de falha da API.
+- O comportamento foi validado por testes E2E.
+
+---
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+- Node.js (versão LTS recomendada)
+
+### 1. Instalar dependências
 ```bash
 npm install
 ```
-### 2. Rodar o Storybook
 
+### 2. Rodar o backend
+```bash
+npm run api
+```
+
+### 3. Rodar o front-end
+```bash
+npm run dev
+```
+
+Acesse: http://localhost:5173
+
+### 4. Rodar Storybook
 ```bash
 npm run storybook
 ```
 
-### 3. Rodar os Testes Unitários
-
+### 5. Testes Unitários
 ```bash
 npx vitest
 ```
-## Componentes Desenvolvidos
 
-* **CardCesta**: Permite a visualização dos itens da cesta da semana e o status da entrega, garantindo transparência na partilha.
-
-* **MuralAvisos**: Facilita a comunicação interna, permitindo a divulgação de excedentes e solicitações de ajuda mútua entre os membros.
-
-* **WidgetFinanceiro**: Dashboard para controle financeiro comunitário, exibindo arrecadação e custos para transparência da gestão.
-
-* **TabelaProducao**: Interface para o agricultor registrar detalhadamente sua produção diária, substituindo o fluxo manual.
-
-* **CardMembro**: Componente administrativo para gestão de usuários, permitindo a visualização e aprovação de novos membros (agricultores e co-agricultores).
+### 6. Testes E2E
+```bash
+npx cypress run
+```
 
 ---
 
 ## Estrutura do Projeto
 
-A organização dos arquivos segue o padrão modular para facilitar a manutenção e os testes:
+src/
+- api/        Comunicação com backend  
+- componentes/ Componentes reutilizáveis  
+- paginas/    Páginas e rotas  
+- store/      Redux (estado global)  
+- utils/      Funções auxiliares  
 
-* `src/componentes/`: Pasta contendo subpastas para cada componente. Cada uma inclui:
-    * `NomeComponente.tsx`: Lógica e interface do componente.
-    * `NomeComponente.stories.tsx`: Configuração para exibição no Storybook.
-    * `NomeComponente.test.tsx`: Testes unitários.
-    * `*.mock.ts`: Dados fictícios para simulação.
-* `src/setupTests.ts`: Configurações globais do ambiente de testes.
+---
+
+## Observações
+
+Projeto desenvolvido com foco acadêmico, priorizando clareza, modularidade e testabilidade, conforme o escopo definido pelo mestre professor.

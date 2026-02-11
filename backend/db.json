@@ -1,0 +1,93 @@
+{
+  "membros": [
+    {
+      "id": "cc36",
+      "nome": "Teste E2E",
+      "tipo": "Agricultor",
+      "status": "Ativo",
+      "fotoUrl": "/perfil.jpg"
+    },
+    {
+      "id": "4108",
+      "nome": "Teste E2E",
+      "tipo": "Agricultor",
+      "status": "Pendente",
+      "fotoUrl": "/perfil.jpg"
+    }
+  ],
+  "producao": [
+    {
+      "id": "1",
+      "produto": "Alface Americana",
+      "quantidade": "50 cabeças",
+      "dataColheita": "03/12/2025"
+    },
+    {
+      "id": "2",
+      "produto": "Tomate",
+      "quantidade": "10 kg",
+      "dataColheita": "03/12/2025"
+    }
+  ],
+  "cestas": [
+    {
+      "id": "1",
+      "nome": "Cesta Semana 1",
+      "data": "2026-02-10"
+    },
+    {
+      "id": "89fd",
+      "nome": "Cesta E2E 1770814893387",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "8bb0",
+      "nome": "Cesta E2E 1770818297854",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "7a59",
+      "nome": "Cesta E2E 1770820702502",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "26d8",
+      "nome": "Cesta E2E 1770820787625",
+      "data": "2026-02-11"
+    }
+  ],
+  "cestaItens": [
+    {
+      "id": "1",
+      "cestaId": 1,
+      "produto": "Alface Americana",
+      "quantidade": 1
+    }
+  ],
+  "mural": [
+    {
+      "id": "1",
+      "titulo": "Reunião",
+      "mensagem": "Reunião sexta 18h.",
+      "data": "2026-02-10",
+      "autor": "Coordenação",
+      "tipo": "Geral"
+    }
+  ],
+  "lancamentos": [
+    {
+      "id": "1",
+      "tipo": "ENTRADA",
+      "valor": 50,
+      "data": "2026-02-10",
+      "descricao": "Contribuição"
+    },
+    {
+      "id": "2",
+      "tipo": "DESPESA",
+      "valor": 20,
+      "data": "2026-02-10",
+      "descricao": "Transporte"
+    }
+  ]
+}

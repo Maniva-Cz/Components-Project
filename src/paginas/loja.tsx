@@ -99,24 +99,69 @@ export const Loja: React.FC = () => {
   if (loading) return <p>Carregando loja...</p>;
 
   return (
-    <div style={{ backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '10px' }}>
-      <h2>Loja / Cestas</h2>
+    <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      {/* Cabeçalho */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, #ecfdf5 0%, #eff6ff 55%, #f5f3ff 100%)',
+          border: '1px solid #e5e7eb',
+          borderRadius: 18,
+          padding: 18,
+          marginBottom: 18
+        }}
+      >
+        <h2 style={{ margin: 0, color: '#111827' }}>Loja / Cestas</h2>
+        <p style={{ margin: '8px 0 0', color: '#374151' }}>
+          Gerencie suas cestas e adicione itens vindos da produção.
+        </p>
+      </div>
 
-      <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 20 }}>
-        <div style={{ minWidth: 320 }}>
-          <h3>Cestas</h3>
+      {/* Colunas: Cestas + Itens */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 18 }}>
+        {/* CESTAS */}
+        <div
+          style={{
+            background: '#fff',
+            border: '1px solid #e5e7eb',
+            borderRadius: 16,
+            padding: 16,
+            boxShadow: '0 6px 18px rgba(0,0,0,0.05)'
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>Cestas</h3>
 
-          <form onSubmit={onCriarCesta} style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+          <form onSubmit={onCriarCesta} style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <input
               data-testid="cesta-nome"
               value={nomeCesta}
               onChange={(e) => setNomeCesta(e.target.value)}
               placeholder="Nome da cesta"
+              style={{
+                flex: 1,
+                padding: '10px 12px',
+                borderRadius: 10,
+                border: '1px solid #d1d5db',
+                outline: 'none'
+              }}
             />
-            <button data-testid="cesta-criar" type="submit">Criar</button>
+            <button
+              data-testid="cesta-criar"
+              type="submit"
+              style={{
+                padding: '10px 12px',
+                borderRadius: 10,
+                border: '1px solid #bbf7d0',
+                background: '#22c55e',
+                color: '#fff',
+                fontWeight: 900,
+                cursor: 'pointer'
+              }}
+            >
+              Criar
+            </button>
           </form>
 
-          <div data-testid="lista-cestas" style={{ display: 'grid', gap: 6 }}>
+          <div data-testid="lista-cestas" style={{ display: 'grid', gap: 8 }}>
             {cestas.map(c => (
               <button
                 key={c.id}
@@ -124,51 +169,121 @@ export const Loja: React.FC = () => {
                 onClick={() => onSelecionarCesta(c.id)}
                 style={{
                   textAlign: 'left',
-                  padding: 8,
-                  borderRadius: 6,
-                  border: '1px solid #ddd',
-                  background: c.id === cestaSelecionada ? '#e0f7fa' : '#fff',
-                  cursor: 'pointer'
+                  padding: 12,
+                  borderRadius: 12,
+                  border: '1px solid #e5e7eb',
+                  background: c.id === cestaSelecionada ? '#e0f2fe' : '#fff',
+                  cursor: 'pointer',
+                  fontWeight: 800,
+                  color: '#111827'
                 }}
               >
-                {c.nome} ({c.data})
+                {c.nome}{' '}
+                <span style={{ fontWeight: 600, color: '#6b7280' }}>
+                  ({c.data})
+                </span>
               </button>
             ))}
           </div>
         </div>
 
-        <div style={{ flex: 1, minWidth: 320 }}>
-          <h3>Itens da cesta</h3>
+        {/* ITENS */}
+        <div
+          style={{
+            background: '#fff',
+            border: '1px solid #e5e7eb',
+            borderRadius: 16,
+            padding: 16,
+            boxShadow: '0 6px 18px rgba(0,0,0,0.05)'
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>Itens da cesta</h3>
+
           {!cestaSelecionada ? (
             <p>Crie ou selecione uma cesta.</p>
           ) : (
-            <div data-testid="lista-itens" style={{ display: 'grid', gap: 8 }}>
+            <div data-testid="lista-itens" style={{ display: 'grid', gap: 10 }}>
               {itens.map(i => (
-                <div key={i.id} data-testid={`item-${i.id}`} style={{ display: 'flex', justifyContent: 'space-between', gap: 10 }}>
-                  <span>{i.produto} (x{i.quantidade})</span>
-                  <button data-testid={`item-remover-${i.id}`} onClick={() => onRemoverItem(i.id)}>Remover</button>
+                <div
+                  key={i.id}
+                  data-testid={`item-${i.id}`}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: 10,
+                    border: '1px solid #e5e7eb',
+                    borderRadius: 12,
+                    padding: 12
+                  }}
+                >
+                  <span style={{ fontWeight: 800, color: '#111827' }}>
+                    {i.produto}{' '}
+                    <span style={{ color: '#6b7280', fontWeight: 700 }}>
+                      (x{i.quantidade})
+                    </span>
+                  </span>
+
+                  <button
+                    data-testid={`item-remover-${i.id}`}
+                    onClick={() => onRemoverItem(i.id)}
+                    style={{
+                      padding: '8px 10px',
+                      borderRadius: 10,
+                      border: '1px solid #fecaca',
+                      background: '#fee2e2',
+                      color: '#991b1b',
+                      fontWeight: 900,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Remover
+                  </button>
                 </div>
               ))}
+
               {itens.length === 0 && <p>Nenhum item na cesta.</p>}
             </div>
           )}
         </div>
       </div>
 
-      <h3>Produtos da produção</h3>
-      <p>Adicionar itens vindos de Produção (RF04)</p>
+      {/* PRODUTOS */}
+      <div
+        style={{
+          background: '#fff',
+          border: '1px solid #e5e7eb',
+          borderRadius: 16,
+          padding: 16,
+          boxShadow: '0 6px 18px rgba(0,0,0,0.05)'
+        }}
+      >
+        <h3 style={{ marginTop: 0 }}>Produtos da produção</h3>
+        <p style={{ marginTop: 6, color: '#6b7280' }}>
+          Adicionar itens vindos de Produção (RF04)
+        </p>
 
-      <div data-testid="lista-produtos" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-        {produtos.map(p => (
-          <button
-            key={p.id}
-            data-testid={`produto-add-${p.id}`}
-            onClick={() => onAdicionarProduto(p.produto)}
-            style={{ padding: 10, borderRadius: 8, border: '1px solid #ddd', background: '#fff', cursor: 'pointer' }}
-          >
-            {p.produto}
-          </button>
-        ))}
+        <div data-testid="lista-produtos" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          {produtos.map(p => (
+            <button
+              key={p.id}
+              data-testid={`produto-add-${p.id}`}
+              onClick={() => onAdicionarProduto(p.produto)}
+              style={{
+                padding: 12,
+                borderRadius: 14,
+                border: '1px solid #e5e7eb',
+                background: '#fff',
+                cursor: 'pointer',
+                fontWeight: 900,
+                color: '#111827',
+                boxShadow: '0 6px 14px rgba(0,0,0,0.04)'
+              }}
+            >
+              {p.produto}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

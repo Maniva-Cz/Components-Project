@@ -1,15 +1,22 @@
 {
   "membros": [
     {
-      "id": "cc36",
-      "nome": "Teste E2E",
-      "tipo": "Agricultor",
-      "status": "Ativo",
+      "id": "69c3",
+      "nome": "jéssica",
+      "tipo": "Co-agricultor",
+      "status": "Pendente",
       "fotoUrl": "/perfil.jpg"
     },
     {
-      "id": "4108",
-      "nome": "Teste E2E",
+      "id": "3e9b",
+      "nome": "Francisco",
+      "tipo": "Agricultor",
+      "status": "Pendente",
+      "fotoUrl": "/perfil.jpg"
+    },
+    {
+      "id": "6a21",
+      "nome": "Cledinelson",
       "tipo": "Agricultor",
       "status": "Pendente",
       "fotoUrl": "/perfil.jpg"
@@ -17,16 +24,28 @@
   ],
   "producao": [
     {
-      "id": "1",
-      "produto": "Alface Americana",
-      "quantidade": "50 cabeças",
-      "dataColheita": "03/12/2025"
-    },
-    {
       "id": "2",
       "produto": "Tomate",
       "quantidade": "10 kg",
       "dataColheita": "03/12/2025"
+    },
+    {
+      "id": "93d1",
+      "produto": "Cenoura",
+      "quantidade": "5 kg",
+      "dataColheita": "11/02/2026"
+    },
+    {
+      "id": "428d",
+      "produto": "Batata inglesa",
+      "quantidade": "3.075 un",
+      "dataColheita": "11/02/2026"
+    },
+    {
+      "id": "9d53",
+      "produto": "Leite",
+      "quantidade": "2 L",
+      "dataColheita": "11/02/2026"
     }
   ],
   "cestas": [
@@ -54,13 +73,106 @@
       "id": "26d8",
       "nome": "Cesta E2E 1770820787625",
       "data": "2026-02-11"
+    },
+    {
+      "id": "79b1",
+      "nome": "Cesta do dia 19/02/2026",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "a752",
+      "nome": "Cesta E2E 1770834493188",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "7939",
+      "nome": "Cesta E2E 1770840146935",
+      "data": "2026-02-11"
     }
   ],
   "cestaItens": [
     {
-      "id": "1",
-      "cestaId": 1,
+      "id": "4078",
+      "cestaId": "79b1",
+      "produto": "Tomate",
+      "quantidade": 1
+    },
+    {
+      "id": "0383",
+      "cestaId": "79b1",
       "produto": "Alface Americana",
+      "quantidade": 1
+    },
+    {
+      "id": "6096",
+      "cestaId": "1",
+      "produto": "Cenoura",
+      "quantidade": 1
+    },
+    {
+      "id": "7a39",
+      "cestaId": "1",
+      "produto": "Batata inglesa",
+      "quantidade": 1
+    },
+    {
+      "id": "ff8c",
+      "cestaId": "1",
+      "produto": "Tomate",
+      "quantidade": 1
+    },
+    {
+      "id": "2e52",
+      "cestaId": "1",
+      "produto": "Leite",
+      "quantidade": 1
+    },
+    {
+      "id": "78d3",
+      "cestaId": "8bb0",
+      "produto": "Batata inglesa",
+      "quantidade": 1
+    },
+    {
+      "id": "60c2",
+      "cestaId": "8bb0",
+      "produto": "Batata inglesa",
+      "quantidade": 1
+    },
+    {
+      "id": "e446",
+      "cestaId": "8bb0",
+      "produto": "Cenoura",
+      "quantidade": 1
+    },
+    {
+      "id": "cde4",
+      "cestaId": "8bb0",
+      "produto": "Cenoura",
+      "quantidade": 1
+    },
+    {
+      "id": "e181",
+      "cestaId": "8bb0",
+      "produto": "Leite",
+      "quantidade": 1
+    },
+    {
+      "id": "96c8",
+      "cestaId": "a752",
+      "produto": "Tomate",
+      "quantidade": 1
+    },
+    {
+      "id": "c388",
+      "cestaId": "a752",
+      "produto": "Leite",
+      "quantidade": 1
+    },
+    {
+      "id": "9b51",
+      "cestaId": "7a59",
+      "produto": "Batata inglesa",
       "quantidade": 1
     }
   ],
@@ -88,6 +200,20 @@
       "valor": 20,
       "data": "2026-02-10",
       "descricao": "Transporte"
+    },
+    {
+      "id": "6453",
+      "tipo": "ENTRADA",
+      "valor": 500,
+      "descricao": "Doações dos Co-Agricultores",
+      "data": "2026-02-11"
+    },
+    {
+      "id": "921b",
+      "tipo": "DESPESA",
+      "valor": 133,
+      "descricao": "Combustível do caminhão",
+      "data": "2026-02-11"
     }
   ]
 }
